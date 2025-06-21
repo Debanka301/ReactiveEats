@@ -22,6 +22,11 @@ public class UserHandler {
 				.flatMap(response -> ServerResponse.status(201).bodyValue(response));
 	}
 	
+	public Mono<ServerResponse> getUserByEmail(ServerRequest serverRequest){
+		return userService.getUserByEmail(serverRequest)
+				.flatMap(response -> ServerResponse.status(200).bodyValue(response));
+	}
+	
 	
 
 }
