@@ -7,6 +7,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import com.ReactiveEats.FoodOrderApplication.entities.User;
 import com.ReactiveEats.FoodOrderApplication.repository.UserRepository;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -23,8 +24,15 @@ public class UserService {
 		return userRepository.findByEmail(serverRequest.pathVariable("emailId"));
 	}
 	
+	public Flux<User> getAllUsers(){
+		return userRepository.findAll();
+	}
 	public static Mono<String> saveUserMessage(User user){
 		return Mono.just("User Saved for name :"+user.getName());
+	}
+
+	public Mono<User> getUserGraphQlByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 
 }
