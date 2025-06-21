@@ -11,10 +11,7 @@
 
 ### 🧍 Epic 2: User Module (CRUD + GraphQL)
 - **2.1**: Create `UserRepository` using `ReactiveMongoRepository`
-- **2.2**: Implement `UserController` with REST endpoints:
-  - `POST /users`
-  - `GET /users`
-  - `GET /users/{id}`
+- **2.2**: Implement `UserRouter` and `UserHandler`
 - **2.3**: Add GraphQL support for User:
   - Queries: `getUserById`, `allUsers`
   - Mutation: `createUser`
