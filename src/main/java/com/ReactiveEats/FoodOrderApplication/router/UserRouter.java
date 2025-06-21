@@ -14,7 +14,9 @@ public class UserRouter {
 	@Bean
 	public RouterFunction<ServerResponse> userRoutes(UserHandler userHandler){
 		return RouterFunctions.route()
-				.POST("/save-user",userHandler::createUser).build();
+				.POST("/save-user",userHandler::createUser)
+				.GET("/get-by-email/{emailId}", userHandler::getUserByEmail)
+				.build();
 	}
 
 }
