@@ -1,6 +1,8 @@
 type Query{
 	getUserByEmail(email: String!): User
 	getAllUsers: [User]
+	getMenusByCuisine(cuisine: String!): [MenuItem]
+	getAllMenus: [MenuItem]
 }
 
 type User{
@@ -8,3 +10,11 @@ type User{
 	name: String
 	email: String
 }
+
+type MenuItem{
+	id: ID
+	name: String
+	cuisine: String
+	price: Float
+}
+	
