@@ -22,5 +22,7 @@ public class MenuService {
 	public Flux<MenuItem> getMenusByCuisine(String cuisine){
 		return menuRepository.findByCuisine(cuisine);
 	}
+	
+	
 
 }
