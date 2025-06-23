@@ -18,6 +18,7 @@ public class MenuRouter {
 		return RouterFunctions.route()
 				.POST("/add-menu", menuHandler::saveMenu)
 				.GET("/get-by-cuisine/{cuisine}", menuHandler::getMenuByCuisine)
+				.GET("/menu/stream", menuHandler::streamMenu)
 				.build();
 	}
 

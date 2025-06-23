@@ -30,5 +30,11 @@ public class MenuHandler {
 				.contentType(MediaType.APPLICATION_JSON)
 				.body(menusByCuisine,MenuItem.class);
 	}
+	
+	public Mono<ServerResponse> streamMenu(ServerRequest serverRequest){
+		return ServerResponse.ok()
+				.contentType(MediaType.TEXT_EVENT_STREAM)
+				.body(menuService.streamNewMenuItems(),MenuItem.class);
+	}
 
 }
