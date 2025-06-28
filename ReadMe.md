@@ -28,23 +28,10 @@
 
 ### 📦 Epic 4: Order Module (WebClient + SSE + GraphQL)
 - **4.1**: Create `OrderRepository`
-- **4.2**: `POST /orders` using WebClient to fetch User & Menu
-- **4.3**: GraphQL: `createOrder(userId, menuItemId)`
-- **4.4**: Stream Order status updates using SSE
+- **4.2**: Save Orders
+- **4.3**: Stream Order status updates using SSE
 
 ---
-
-### ♻️ Epic 5: Reactive Enhancements
-- **5.1**: Add error handling with `.onErrorResume`, `.switchIfEmpty`
-- **5.2**: Add logging throughout services
-- **5.3**: Add retry & timeout logic in WebClient
-
----
-
-### 🧪 Epic 6: Testing
-- **6.1**: Unit test services with `StepVerifier`
-- **6.2**: REST/SSE testing with `WebTestClient`
-- **6.3**: GraphQL integration tests
 
 ### If MongoDB Doesn't start then open cmd as Admin and Type net start MongoDB
 

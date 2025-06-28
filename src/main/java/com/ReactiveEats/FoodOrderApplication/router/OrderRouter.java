@@ -15,6 +15,8 @@ public class OrderRouter {
 	public RouterFunction<ServerResponse> orderRoutes(OrderHandler orderHandler){
 		return RouterFunctions.route()
 				.POST("/add-order", orderHandler::saveOrder)
+				.GET("/get-orders/{userId}", orderHandler::getAllOrdersById)
+				.GET("/order/stream",orderHandler::getStreamOfOrders)
 				.build();
 	}
 

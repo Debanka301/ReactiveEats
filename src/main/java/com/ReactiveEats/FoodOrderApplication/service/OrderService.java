@@ -16,6 +16,7 @@ import com.ReactiveEats.FoodOrderApplication.repository.UserRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Sinks;
 
 @Service
 public class OrderService {
@@ -31,7 +32,9 @@ public class OrderService {
 	
 	private WebClient webClient = WebClient.create();
 	
-	public Mono<Order> saveOrder(OrderRequestDTO order) throws InterruptedException, ExecutionException {
+	private Sinks.Many<Order> orderSink = Sinks.many().multicast().onBackpressureBuffer();
+	
+	public Mono<String> saveOrder(OrderRequestDTO order) throws InterruptedException, ExecutionException {
 		
 //		User user = webClient.get().uri("http://localhost:8080/get-by-email/"+order.getEmailId())
 //							.retrieve().bodyToMono(User.class).toFuture().get();
@@ -58,9 +61,16 @@ public class OrderService {
 		saveOrder.setEmailId(order.getEmailId());
 		saveOrder.setUserId(user.getId());
 		
-		return orderRepository.save(saveOrder);
+		return orderRepository.save(saveOrder).flatMap(x->{
+			orderSink.tryEmitNext(x);
+			return Mono.just("Order saved for : "+x.getEmailId());
+		});
 		
     }
+	
+	public Flux<Order> streamNewOrders(){
+		return orderSink.asFlux();
+	}
 
     public Flux<Order> getOrdersByUser(String userId) {
         return orderRepository.findByUserId(userId);
